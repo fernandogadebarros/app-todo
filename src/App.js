@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import GlobalStyle from './styles/global';
+import { ThemeProvider } from 'styled-components';
+import { lightTheme, darkTheme } from './styles/theme';
 
-function App() {
+import { useState } from 'react';
+
+// Components
+import Header from './components/Header/Header';
+import TodoForm from './components/TodoForm/TodoForm';
+import TodoList from './components/TodoList/TodoList';
+import Footer from './components/Footer/Footer';
+
+// Import Provider Context
+import { TodoProvider } from './context/TodoContext';
+
+export default function App() {
+  const [theme, setTheme] = useState(true);
+
+  const handleTheme = () => {
+    setTheme(!theme);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ThemeProvider theme={theme ? darkTheme : lightTheme}>
+        <TodoProvider>
+          <GlobalStyle />
+          <Header changeTheme={handleTheme} theme={theme} />
+          <div className="main-container">            
+            <TodoForm />
+            <TodoList />
+          </div>
+          <Footer />
+        </TodoProvider>
+      </ThemeProvider>
+    </>
   );
 }
-
-export default App;
