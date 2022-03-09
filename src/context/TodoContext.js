@@ -6,17 +6,17 @@ const TodoContext = createContext();
 
 // Create provider
 export const TodoProvider = ({ children }) => {
-  const [todo, setTodo] = useState([]);
+  const [todo, setTodo] = useState([{id: 1, text: 'First Task'}]);
   const [todoEdit, setTodoEdit] = useState({ item: {}, edit: false });
 
   useEffect(() => {
-    setTodo(todo)
     setTodo(JSON.parse(localStorage.getItem('Todo')));
   }, []);
 
   useEffect(() => {
     if (todo !== null) {
       localStorage.setItem('Todo', JSON.stringify(todo));
+      setTodo(todo)
     }
   }, [todo]);
 
