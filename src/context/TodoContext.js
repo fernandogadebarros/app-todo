@@ -10,6 +10,7 @@ export const TodoProvider = ({ children }) => {
   const [todoEdit, setTodoEdit] = useState({ item: {}, edit: false });
 
   useEffect(() => {
+    setTodo(todo)
     setTodo(JSON.parse(localStorage.getItem('Todo')));
   }, []);
 
