@@ -6,6 +6,6 @@ export const FooterArea = styled.footer`
   p {
     text-align: center;
     font-size: 12px;
-    color: ${props => props.theme.text};
+    color: ${(props) => props.theme.text};
   }
 `;

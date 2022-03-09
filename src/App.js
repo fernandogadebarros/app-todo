@@ -26,7 +26,7 @@ export default function App() {
         <TodoProvider>
           <GlobalStyle />
           <Header changeTheme={handleTheme} theme={theme} />
-          <div className="main-container">            
+          <div className='main-container'>
             <TodoForm />
             <TodoList />
           </div>

@@ -1,23 +1,23 @@
 import { createContext, useState } from 'react';
 import { useEffect } from 'react';
 
-
 // Create Context
 const TodoContext = createContext();
 
 // Create provider
 export const TodoProvider = ({ children }) => {
-  const [todo, setTodo] = useState([{id: 1, text: 'Primeira tarefa'}]);
+  const [todo, setTodo] = useState([]);
   const [todoEdit, setTodoEdit] = useState({ item: {}, edit: false });
 
   useEffect(() => {
-    setTodo(todo)
     setTodo(JSON.parse(localStorage.getItem('Todo')));
-  }, [])
+  }, []);
 
   useEffect(() => {
-    localStorage.setItem('Todo', JSON.stringify(todo))
-  }, [todo])
+    if (todo !== null) {
+      localStorage.setItem('Todo', JSON.stringify(todo));
+    }
+  }, [todo]);
 
   const addTodo = (newTodo) => {
     let newId = Math.floor(Math.random() * (99999999 - 1) + 1);
@@ -29,11 +29,11 @@ export const TodoProvider = ({ children }) => {
     setTodo(
       todo.map((item) => (item.id === id ? { ...item, ...todoItem } : item))
     );
-    setTodoEdit({ edit: false })
+    setTodoEdit({ edit: false });
   };
 
   const editTodo = (item) => {
-    setTodoEdit({ item, edit: true });
+    setTodoEdit({ item, edit: true});
   };
 
   const deleteTodo = (id) => {

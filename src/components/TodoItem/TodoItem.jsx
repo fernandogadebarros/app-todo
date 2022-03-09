@@ -13,12 +13,18 @@ export default function TodoItem({ item }) {
       <span>{item.text}</span>
       <div>
         <button onClick={() => deleteTodo(item.id)}>
-          <FaRegTrashAlt className="trash" size={18} color="#FF5C58" />
+          <FaRegTrashAlt 
+            size={18} 
+            color='#FF5C58' 
+          />
         </button>
         <button onClick={() => editTodo(item)}>
-          <FaEdit size={18} color="#65C18C" />
+          <FaEdit 
+            size={18} 
+            color='#65C18C' 
+          />
         </button>
       </div>
     </TodoItemArea>
-  )
+  );
 }

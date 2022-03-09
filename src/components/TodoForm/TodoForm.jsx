@@ -1,7 +1,7 @@
-import { TodoFormArea } from './styles';
-import { FaPlus } from 'react-icons/fa';
-
+import { TodoFormArea, FormTodo } from './styles';
 import { useState, useContext, useEffect } from 'react';
+
+import { FaPlus } from 'react-icons/fa';
 
 import TodoContext from '../../context/TodoContext';
 
@@ -12,10 +12,10 @@ export default function TodoForm() {
   const { addTodo, todoEdit, updateTodo } = useContext(TodoContext);
 
   useEffect(() => {
-    if(todoEdit.edit === true) {
+    if (todoEdit.edit === true) {
       setText(todoEdit.item.text);
     }
-  }, [todoEdit])
+  }, [todoEdit]);
 
   const handleTextChange = (e) => {
     if (text === '') {
@@ -39,7 +39,6 @@ export default function TodoForm() {
       } else {
         addTodo(newTodo);
       }
-
       setText('');
     }
   };
@@ -47,7 +46,7 @@ export default function TodoForm() {
   return (
     <TodoFormArea>
       <div className='container'>
-        <form onSubmit={handleSubmit}>
+        <FormTodo onSubmit={handleSubmit}>
           <input
             type='text'
             placeholder='Insira sua tarefa...'
@@ -57,7 +56,7 @@ export default function TodoForm() {
           <button>
             <FaPlus />
           </button>
-        </form>
+        </FormTodo>
         {message && <div className='message'>{message}</div>}
       </div>
     </TodoFormArea>
